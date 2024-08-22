@@ -1,4 +1,4 @@
-# Insert smart chips in your Google Sheets
+# Insert smart chips Google Sheets
 
 Insert smart chips in your Google Sheets to include information about:
 

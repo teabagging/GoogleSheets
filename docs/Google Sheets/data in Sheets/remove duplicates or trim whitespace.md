@@ -1,6 +1,4 @@
-# Split text, remove duplicates, or trim whitespace
-
-
+# remove duplicates or trim whitespace
 
 ## Split data into columns
 

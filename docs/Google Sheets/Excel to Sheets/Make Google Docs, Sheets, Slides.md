@@ -1,4 +1,4 @@
-# Make Google Docs, Sheets, Slides & Forms public
+# Make Google Docs, Sheets, Slides
 
 ![](https://storage.googleapis.com/support-kms-prod/lBDlOJQm5YYswQHWSlMdz4Hsf4hhw3BTrOjo)
 

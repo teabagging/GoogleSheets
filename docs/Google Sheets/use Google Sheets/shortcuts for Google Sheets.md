@@ -1,10 +1,8 @@
-# Keyboard shortcuts for Google Sheets
+## shortcuts for Google Sheets
 
 Use keyboard shortcuts in Google Sheets to navigate, format, and use formulas.
 
 **Note**: Some shortcuts might not work for all languages or keyboards.
-
-
 
 If you use an external keyboard with your iPhone or iPad, you can use the shortcuts below. This works with most kinds of external keyboards.
 

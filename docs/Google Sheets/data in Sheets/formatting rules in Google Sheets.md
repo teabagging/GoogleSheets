@@ -1,3 +1,5 @@
+## formatting rules in Google Sheets
+
 You can use wildcard characters to match multiple expressions. Wildcard characters can be used with the "Text contains" or "Text does not contain" fields while formatting.
 
 * To match any single character, use a question mark (?). For example, a text rule containing "a?c" would format cells with "abc," but not "ac" or "abbc."
