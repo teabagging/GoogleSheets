@@ -1,0 +1,115 @@
+<?xml version="1.0"?>
+<?mso-application progid="Excel.Sheet"?>
+<Workbook xmlns="urn:schemas-microsoft-com:office:spreadsheet" xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:x="urn:schemas-microsoft-com:office:excel" xmlns:ss="urn:schemas-microsoft-com:office:spreadsheet" xmlns:html="http://www.w3.org/TR/REC-html40">
+ <ExcelWorkbook xmlns="urn:schemas-microsoft-com:office:excel">
+  <WindowHeight>10620</WindowHeight>
+  <WindowWidth>11020</WindowWidth>
+  <WindowTopX>2260</WindowTopX>
+  <WindowTopY>19600</WindowTopY>
+  <ActiveSheet>1</ActiveSheet>
+  <ProtectStructure>False</ProtectStructure>
+  <ProtectWindows>False</ProtectWindows>
+ </ExcelWorkbook>
+ <Styles>
+  <Style ss:ID="Default" ss:Name="Normal">
+   <Alignment ss:Vertical="Bottom"/>
+   <Borders/>
+   <Font ss:FontName="Calibri" x:Family="Swiss" ss:Size="12" ss:Color="#000000"/>
+   <Interior/>
+   <NumberFormat/>
+   <Protection/>
+  </Style>
+  <Style ss:ID="s16">
+   <Font ss:FontName="Calibri" x:Family="Swiss" ss:Size="12" ss:Color="#1C1E21"/>
+  </Style>
+  <Style ss:ID="s17">
+   <Font ss:FontName="Calibri" x:Family="Swiss" ss:Size="12" ss:Color="#000000" ss:Bold="1"/>
+  </Style>
+  <Style ss:ID="s19">
+   <Alignment ss:Horizontal="Center" ss:Vertical="Bottom"/>
+   <Font ss:FontName="Calibri" x:Family="Swiss" ss:Size="12" ss:Color="#000000" ss:Bold="1"/>
+  </Style>
+  <Style ss:ID="s20">
+   <Font ss:FontName="Calibri" x:Family="Swiss" ss:Size="12" ss:Color="#467886" ss:Underline="Single"/>
+  </Style>
+ </Styles>
+ <Worksheet ss:Name="Frameworks">
+  <Table ss:ExpandedColumnCount="7" ss:ExpandedRowCount="10" x:FullColumns="1" x:FullRows="1" ss:DefaultColumnWidth="65" ss:DefaultRowHeight="16">
+   <Column ss:Index="2" ss:Width="24"/>
+   <Column ss:Width="31"/>
+   <Column ss:Width="24"/>
+   <Column ss:Width="31"/>
+   <Column ss:Width="24"/>
+   <Column ss:Width="31"/>
+   <Row>
+    <Cell ss:StyleID="s17"><Data ss:Type="String"></Data></Cell>
+    <Cell ss:MergeAcross="1" ss:StyleID="s19"><Data ss:Type="String">MacOS</Data></Cell>
+    <Cell ss:MergeAcross="1" ss:StyleID="s19"><Data ss:Type="String">Windows</Data></Cell>
+    <Cell ss:MergeAcross="1" ss:StyleID="s19"><Data ss:Type="String">Linux</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:StyleID="s17"><Data ss:Type="String">Framework</Data></Cell>
+    <Cell ss:StyleID="s17"><Data ss:Type="String">x64</Data></Cell>
+    <Cell ss:StyleID="s17"><Data ss:Type="String">ARM</Data></Cell>
+    <Cell ss:StyleID="s17"><Data ss:Type="String">x64</Data></Cell>
+    <Cell ss:StyleID="s17"><Data ss:Type="String">ARM</Data></Cell>
+    <Cell ss:StyleID="s17"><Data ss:Type="String">x64</Data></Cell>
+    <Cell ss:StyleID="s17"><Data ss:Type="String">ARM</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:StyleID="s20" ss:HRef="/docs/demos/desktop/electron#complete-example"><Data ss:Type="String">Electron</Data></Cell>
+    <Cell ss:StyleID="s16"><Data ss:Type="String">✔</Data></Cell>
+    <Cell ss:StyleID="s16"><Data ss:Type="String">✔</Data></Cell>
+    <Cell ss:StyleID="s16"><Data ss:Type="String">✔</Data></Cell>
+    <Cell ss:StyleID="s16"><Data ss:Type="String">✱</Data></Cell>
+    <Cell ss:StyleID="s16"><Data ss:Type="String">✔</Data></Cell>
+    <Cell ss:StyleID="s16"><Data ss:Type="String">✔</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:StyleID="s20" ss:HRef="/docs/demos/desktop/nwjs#complete-example"><Data ss:Type="String">NW.js</Data></Cell>
+    <Cell ss:StyleID="s16"><Data ss:Type="String">✔</Data></Cell>
+    <Cell ss:StyleID="s16"><Data ss:Type="String">✔</Data></Cell>
+    <Cell ss:StyleID="s16"><Data ss:Type="String">✔</Data></Cell>
+    <Cell ss:StyleID="s16"><Data ss:Type="String">✔</Data></Cell>
+    <Cell ss:StyleID="s16"><Data ss:Type="String">✔</Data></Cell>
+    <Cell ss:StyleID="s16"><Data ss:Type="String">✱</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:StyleID="s20" ss:HRef="/docs/demos/desktop/wails#complete-example"><Data ss:Type="String">Wails</Data></Cell>
+    <Cell ss:StyleID="s16"><Data ss:Type="String">✔</Data></Cell>
+    <Cell ss:StyleID="s16"><Data ss:Type="String">✔</Data></Cell>
+    <Cell ss:StyleID="s16"><Data ss:Type="String">✔</Data></Cell>
+    <Cell ss:StyleID="s16"><Data ss:Type="String">✔</Data></Cell>
+    <Cell ss:StyleID="s16"><Data ss:Type="String">✔</Data></Cell>
+    <Cell ss:StyleID="s16"><Data ss:Type="String">✔</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:StyleID="s20" ss:HRef="/docs/demos/desktop/tauri#complete-example"><Data ss:Type="String">Tauri</Data></Cell>
+    <Cell ss:StyleID="s16"><Data ss:Type="String">✔</Data></Cell>
+    <Cell ss:StyleID="s16"><Data ss:Type="String">✔</Data></Cell>
+    <Cell ss:StyleID="s16"><Data ss:Type="String">✔</Data></Cell>
+    <Cell ss:StyleID="s16"><Data ss:Type="String">✔</Data></Cell>
+    <Cell ss:StyleID="s16"><Data ss:Type="String">✔</Data></Cell>
+    <Cell ss:StyleID="s16"><Data ss:Type="String">✔</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:StyleID="s20" ss:HRef="/docs/demos/desktop/neutralino#complete-example"><Data ss:Type="String">NeutralinoJS</Data></Cell>
+    <Cell ss:StyleID="s16"><Data ss:Type="String">✔</Data></Cell>
+    <Cell ss:StyleID="s16"><Data ss:Type="String">✔</Data></Cell>
+    <Cell ss:StyleID="s16"><Data ss:Type="String">✔</Data></Cell>
+    <Cell ss:StyleID="s16"><Data ss:Type="String">✱</Data></Cell>
+    <Cell ss:StyleID="s16"><Data ss:Type="String">✔</Data></Cell>
+    <Cell ss:StyleID="s16"><Data ss:Type="String">✔</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:StyleID="s20" ss:HRef="/docs/demos/desktop/reactnative"><Data ss:Type="String">React Native</Data></Cell>
+    <Cell ss:StyleID="s16"><Data ss:Type="String">✔</Data></Cell>
+    <Cell ss:StyleID="s16"><Data ss:Type="String">✔</Data></Cell>
+    <Cell ss:StyleID="s16"><Data ss:Type="String">✔</Data></Cell>
+    <Cell ss:StyleID="s16"><Data ss:Type="String">✱</Data></Cell>
+    <Cell ss:StyleID="s16"></Cell>
+    <Cell ss:StyleID="s16"></Cell>
+   </Row>
+  </Table>
+ </Worksheet>
+</Workbook>

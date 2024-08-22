@@ -1,0 +1,178 @@
+.features {
+  padding: 20px 0;
+}
+
+.feature {
+  margin-bottom: 20px;
+}
+
+.card {
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+}
+
+.card h3 {
+  font-size: 1.5rem;
+  margin-bottom: 15px;
+}
+
+.card p {
+  font-size: 1rem;
+  margin-bottom: 20px;
+}
+
+.button--primary {
+  color: white;
+  background-color: #0078e7;
+  text-decoration: none;
+}
+
+.button--primary:hover {
+  background-color: #005bb5;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.heroBanner {
+  padding: 2.5rem 0;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.heroBannerLogo {
+  max-width: 170px;
+  max-height: 170px;
+  width: 150px;
+  transition: transform 0.3s ease-in-out;
+}
+
+.heroBannerLogo:hover {
+  transform: scale(1.1);
+}
+
+@media screen and (max-width: 966px) {
+  .heroBanner {
+    padding: 2rem;
+  }
+}
+
+/* Dark Theme */
+.hero--dark {
+  background: linear-gradient(135deg, #1d1f21, #4a90e2);
+  padding: 60px 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+html[data-theme='dark'] .gettingStartedSection {
+  background-color: #33363b;
+}
+
+/* Buttons */
+.button--primary {
+  background: linear-gradient(90deg, #4a90e2, #50c3e3);
+  border-radius: 25px;
+  box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.3);
+  color: #fff;
+  transition: transform 0.3s ease-in-out;
+}
+
+.button--primary:hover {
+  transform: scale(1.05);
+}
+
+/* Features Section */
+.features {
+  display: flex;
+  align-items: center;
+  padding: 4rem 0;
+  width: 100%;
+}
+
+.feature {
+  background-color: #f5f5f5;
+  padding: 20px;
+  border-radius: 15px;
+  box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease-in-out;
+  text-align: center;
+}
+
+.feature:hover {
+  transform: translateY(-5px);
+}
+
+.feature h2 {
+  color: #4a90e2;
+}
+
+/* Code Blocks */
+.CodeBlock {
+  background-color: #2d2d2d;
+  color: #f8f8f2;
+  border-radius: 8px;
+  padding: 15px;
+  box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.3);
+  font-family: 'Fira Code', monospace;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .heroBannerLogo {
+    width: 80%;
+  }
+
+  .features {
+    flex-direction: column;
+  }
+
+  .feature {
+    margin-bottom: 20px;
+    width: 100%;
+  }
+
+  .heroBanner {
+    background: linear-gradient(135deg, #2a2a72, #009ffd);
+    color: white;
+  }
+
+  .getStartedSection {
+    padding: 20px;
+  }
+
+  .heroTitle {
+    font-size: 3rem;
+    font-weight: bold;
+  }
+
+  .heroSubtitle {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+  }
+
+  .cardHover:hover {
+    transform: translateY(-5px);
+    box-shadow: 0px 10px 15px rgba(0, 0, 0, 0.1);
+  }
+
+  .movedDocumentation {
+    background-color: #ff6f61;
+    border: 2px solid #ff4500;
+    padding: 1.5rem;
+    margin-top: 2rem;
+    color: white;
+  }
+}

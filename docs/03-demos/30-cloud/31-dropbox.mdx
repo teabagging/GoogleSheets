@@ -1,0 +1,323 @@
+---
+title: Spreadsheets in Dropbox
+sidebar_label: Dropbox
+pagination_prev: demos/local/index
+pagination_next: demos/extensions/index
+---
+
+<head>
+  <script type="text/javascript" src="https://www.dropbox.com/static/api/2/dropins.js" id="dropboxjs" data-app-key="v85yuk360zx6nyx"></script>
+</head>
+
+[Dropbox](https://www.dropbox.com/) is a file hosting service that offers APIs
+for programmatic file access.
+
+[SheetJS](https://sheetjs.com) is a JavaScript library for reading and writing
+data from spreadsheets.
+
+This demo uses SheetJS to read and write spreadsheets stored on Dropbox. We'll
+explore two Dropbox API workflows:
+
+- A "Chooser"[^1] application allows users to select files from their Dropbox
+accounts. This demo will fetch and parse the selected file.
+
+- A "Saver"[^2] application allows users to save a generated spreadsheet to
+their Dropbox account. This demo will generate a XLS workbook using SheetJS.
+
+## Integration Details
+
+"Dropbox Apps" are the standard way to interact with the service.  The
+["Dropbox App"](#dropbox-app) section describes how this demo was configured.
+
+:::info pass
+
+The Dropbox API script is loaded in this page with
+
+```html
+<script type="text/javascript" src="https://www.dropbox.com/static/api/2/dropins.js" id="dropboxjs" data-app-key="v85yuk360zx6nyx"></script>
+```
+
+The `data-app-key` used in this demo is a "Development" key associated with the
+`localhost` and `docs.sheetjs.com` domains.  Dropbox API does not require
+"Production" approval for the Chooser or Saver.
+
+:::
+
+The live demos require a Dropbox account.
+
+### Reading Files
+
+"Chooser" is a small library that lets users select a file from their account.
+`Dropbox.createChooseButton` is a function that accepts an options argument and
+returns a DOM element that should be added to the page:
+
+```js
+var button = Dropbox.createChooseButton({
+  /* ... options described below ... */
+});
+document.appendChild(button);
+```
+
+The following options must be set:
+
+- `multiselect: false` ensures only one file can be selected
+- `folderselect: false` limits selection to real files
+- `linkType: "direct"` ensures the link points to a raw file
+- `success` method is called when the user selects a file
+
+The following options are optional:
+
+- `extensions: ['.xlsx', '.xls']` limits the file types for selection
+
+#### Chooser Callback
+
+The `success` callback method receives an array of File objects even if only one
+file is selected. This file object has the following properties:
+
+- `name` is the name of the selected file
+- `link` is a temporary URL that can be fetched
+
+This demo fetches the link using the `fetch` API, parses the raw data using the
+SheetJS `read` function[^3] and generates a HTML table using `sheet_to_html`[^4]
+
+```js
+async(files) => {
+  /* get file entry -- note that dropbox API always passes an array */
+  var file = files[0];
+  console.log(`Selected ${file.name} ID=${file.id}`);
+
+  /* fetch file and parse */
+  var wb = XLSX.read(await (await fetch(file.link)).arrayBuffer());
+
+  /* convert first sheet to HTML table and add to page */
+  var html = XLSX.utils.sheet_to_html(wb.Sheets[wb.SheetNames[0]]);
+  console.log(html);
+}
+```
+
+#### Chooser Live Demo
+
+:::caution pass
+
+If the live demo shows a message
+
+```
+ReferenceError: Dropbox is not defined
+```
+
+please refresh the page.  This is a known bug in the documentation generator.
+
+:::
+
+```jsx live
+function SheetJSChoisissez() {
+  const [msg, setMsg] = React.useState("Press the button to show a Chooser");
+  const btn = useRef(), tbl = useRef();
+  React.useEffect(() => {
+    if(typeof Dropbox == "undefined") return setMsg("Dropbox is not defined");
+    /* create button */
+    var button = Dropbox.createChooseButton({
+      /* required settings */
+      multiselect: false,
+      folderselect: false,
+      linkType: "direct",
+      /* optional settings */
+      extensions: ['.xlsx', '.xls', '.numbers'], // list of extensions
+
+      /* event handlers */
+      cancel: () => setMsg("User Canceled Selection!"),
+      success: async(files) => {
+        /* get file entry -- note that dropbox API always passes an array */
+        var file = files[0];
+        setMsg(`Selected ${file.name} ID=${file.id}`);
+
+        /* fetch file and parse */
+        var wb = XLSX.read(await (await fetch(file.link)).arrayBuffer());
+
+        /* convert first sheet to HTML table and add to page */
+        tbl.current.innerHTML = XLSX.utils.sheet_to_html(wb.Sheets[wb.SheetNames[0]]);
+      }
+    });
+    /* add button to page */
+    btn.current.appendChild(button);
+  }, []);
+  return ( <><b>{msg}</b><br/><div ref={btn}/><div ref={tbl}/></> );
+}
+```
+
+### Writing Files
+
+"Saver" is a small library that lets users save files to their account.
+`Dropbox.createSaveButton` is a function that accepts three arguments and
+returns a DOM element that should be added to the page:
+
+```js
+var button = Dropbox.createSaveButton(url, filename, options);
+/* add button to page */
+btn.current.appendChild(button);
+```
+
+`filename` will be the recommended filename in the Save window.
+
+The options object supports two callbacks: `success` (if the save succeeded) and
+`cancel` (if the user cancels without saving).
+
+#### URL
+
+:::caution pass
+
+The Dropbox API was not designed for writing files that are created in the web
+browser.  The Data URI approach is a neat workaround but should not be used in
+production for larger files.  It is better to create the files in the server
+using NodeJS and generate a proper URL for Dropbox to fetch.
+
+:::
+
+The Dropbox API is designed to fetch data from a user-specified URL. Files are
+not included in the request!
+
+The SheetJS workaround involves the Data URI scheme[^5]. The main steps are:
+
+1) Write a workbook using the SheetJS `write`[^6] method. The `type: "base64"`
+option instructs the method to return a Base64-encoded string.
+
+```js
+/* write XLS workbook (Base64 string) */
+const b64 = XLSX.write(workbook, { type: "base64", bookType: "xls" });
+```
+
+2) Construct a Data URL by prepending the `data` header:
+
+```js
+/* create data URI */
+const url = "data:application/vnd.ms-excel;base64," + b64;
+```
+
+3) Create a button and add it to the page:
+
+```js
+/* create save button using the concise function call */
+var button = Dropbox.createSaveButton( url, "SheetJSDropbox.xls", {
+  success: () => setMsg("File saved successfully!"),
+  cancel: () => setMsg("User Canceled Selection!"),
+});
+document.appendChild(button);
+```
+
+:::info pass
+
+The file must be written before the Save button is created.
+
+:::
+
+#### Saver Live Demo
+
+This demo starts with an array of arrays of data. When the page loads, the data
+is exported to XLSX and a data URI is generated. When the button is clicked, the
+data URI is sent to Dropbox and the service will attempt to save the data to
+`SheetJSDropbox.xls` in your Dropbox account.
+
+:::caution pass
+
+If the live demo shows a message
+
+```
+ReferenceError: Dropbox is not defined
+```
+
+please refresh the page.  This is a known bug in the documentation generator.
+
+:::
+
+```jsx live
+function SheetJSEnregistrez() {
+  const [msg, setMsg] = React.useState("Press the button to write XLS file");
+  const btn = useRef(), tbl = useRef();
+  React.useEffect(() => { (async() => {
+    if(typeof Dropbox == "undefined") return setMsg("Dropbox is not defined");
+    /* fetch data and write table (sample data) */
+    const f = await(await fetch("https://docs.sheetjs.com/pres.xlsx")).arrayBuffer();
+    const wb = XLSX.read(f);
+    tbl.current.innerHTML = XLSX.utils.sheet_to_html(wb.Sheets[wb.SheetNames[0]]);
+
+    /* create workbook from table */
+    const table = tbl.current.getElementsByTagName("TABLE")[0];
+    const new_wb = XLSX.utils.table_to_book(table);
+
+    /* write XLS workbook (Base64 string) */
+    const b64 = XLSX.write(new_wb, { type: "base64", bookType: "xls" });
+
+    /* create data URI */
+    const url = "data:application/vnd.ms-excel;base64," + b64;
+
+    /* create save button using the concise function call */
+    var button = Dropbox.createSaveButton( url, "SheetJSDropbox.xls", {
+      success: () => setMsg("File saved successfully!"),
+      cancel: () => setMsg("User Canceled Selection!"),
+    });
+    /* add button to page */
+    btn.current.appendChild(button);
+  })(); }, []);
+  return ( <><b>{msg}</b><br/><div ref={btn}/><div ref={tbl}/></> );
+}
+```
+
+## Dropbox App
+
+:::note Tested Deployments
+
+This demo was last tested on 2024 May 27.
+
+:::
+
+This demo requires a "Dropbox app":
+
+0) Create a Dropbox account and verify the associated email address. This demo
+has been tested with a free Dropbox Basic plan account. The app installation
+step can be safely skipped.
+
+1) Create a Dropbox app in the Developer panel.
+
+Click the `᎒᎒᎒` icon > App Center. In the next page, click "Build an App" in the
+left sidebar. In the next page, click "Create apps".
+
+In the App creation wizard, select the following options:
+
+- "Choose an API": "Scoped access"
+- "Choose the type of access you need": "Full Dropbox"
+- "Name": (enter any name)
+
+:::caution pass
+
+The Dropbox API Terms and Conditions should be reviewed before acceptance.
+
+:::
+
+Click "Create App" to create the app.
+
+2) Configure the Dropbox app in the Developer tools.
+
+The following permissions should be selected in the "Permissions" tab
+
+- `files.metadata.write` (View and edit information about your Dropbox files and folders)
+- `files.metadata.read` (View information about your Dropbox files and folders)
+- `files.content.write` (Edit content of your Dropbox files and folders)
+- `files.content.read` (View content of your Dropbox files and folders)
+
+After selecting the permissions, click "Submit".
+
+In the Settings tab, under "Chooser / Saver / Embedder domains", the desired
+public domains should be added. `localhost` must also be added for development
+use (it is not automatically enabled).
+
+For public use, select "Enable Additional Users".
+
+3) Copy the "App key" and add it to the `data-app-key` attribute of the Dropbox
+integration script reference.
+
+[^1]: See ["Chooser"](https://www.dropbox.com/developers/chooser) in the Dropbox Developers Documentation
+[^2]: See ["Saver"](https://www.dropbox.com/developers/saver) in the Dropbox Developers Documentation
+[^3]: See [`read` in "Reading Files"](/docs/api/parse-options)
+[^4]: See [`sheet_to_html` in "Utilities"](/docs/api/utilities/html#html-table-output)
+[^5]: See ["Data URLs"](https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/Data_URLs) in the "MDN web docs"
+[^6]: See [`writeFile` in "Writing Files"](/docs/api/write-options)

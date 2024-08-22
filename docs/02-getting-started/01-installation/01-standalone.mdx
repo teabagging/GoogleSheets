@@ -1,0 +1,283 @@
+---
+title: Standalone Browser Scripts
+pagination_prev: getting-started/index
+pagination_next: getting-started/examples/index
+sidebar_position: 1
+sidebar_custom_props:
+  summary: Classic pages with simple <script> tags
+---
+
+import current from '/version.js';
+import CodeBlock from '@theme/CodeBlock';
+
+Each standalone release script is available at https://cdn.sheetjs.com/.
+
+<p>The current version is {current} and can be referenced as follows:</p>
+
+<CodeBlock language="html">{`\
+<!-- use version ${current} -->
+<script lang="javascript" src="https://cdn.sheetjs.com/xlsx-${current}/package/dist/xlsx.full.min.js"></script>`}
+</CodeBlock>
+
+:::tip pass
+
+[Watch the repo](https://git.sheetjs.com/SheetJS/sheetjs) or subscribe to the
+[RSS feed](https://git.sheetjs.com/sheetjs/sheetjs/tags.rss) to be notified when
+new versions are released!
+
+:::
+
+:::danger pass
+
+A number of services host older versions of the SheetJS libraries.  Due to
+syncing issues, they are generally out of date.
+
+**The SheetJS CDN** https://cdn.sheetjs.com/ **is the authoritative source**
+**for SheetJS scripts**
+
+:::
+
+## Browser Scripts
+
+`xlsx.full.min.js` is the complete standalone script. It includes support for
+reading and writing many spreadsheet formats.
+
+<CodeBlock language="html">{`\
+<!-- use xlsx.full.min.js from version ${current} -->
+<script lang="javascript" src="https://cdn.sheetjs.com/xlsx-${current}/package/dist/xlsx.full.min.js"></script>`}
+</CodeBlock>
+
+`xlsx.mini.min.js` is a slimmer build that omits the following features:
+
+- CSV and SYLK encodings (directly affecting users outside of the United States)
+- XLSB / XLS / Lotus 1-2-3 / SpreadsheetML 2003 / Numbers file formats
+- [Stream utility functions](/docs/api/stream)
+
+<details>
+  <summary><b>How to integrate the mini build</b> (click to show)</summary>
+
+Replace references to `xlsx.full.min.js` with `xlsx.mini.min.js`.  Starting from
+scratch, a single script tag should be added at the top of the HTML page:
+
+<CodeBlock language="html">{`\
+<!-- use xlsx.mini.min.js from version ${current} -->
+<script lang="javascript" src="https://cdn.sheetjs.com/xlsx-${current}/package/dist/xlsx.mini.min.js"></script>`}
+</CodeBlock>
+
+</details>
+
+### Vendoring
+
+For general stability, making a local copy of SheetJS scripts ("vendoring") is
+strongly recommended. Vendoring decouples websites from SheetJS infrastructure.
+
+<ol start="1"><li><p>Download the script (<code parentName="pre">xlsx.full.min.js</code>) for
+   the desired version. The current version is available at <a href={"https://cdn.sheetjs.com/xlsx-" + current + "/package/dist/xlsx.full.min.js"}>{"https://cdn.sheetjs.com/xlsx-" + current + "/package/dist/xlsx.full.min.js"}</a></p></li></ol>
+
+2) Move the script to a `public` folder with other scripts.
+
+3) Reference the local script from HTML pages:
+
+```html
+<script src="/public/xlsx.full.min.js"></script>
+```
+
+This script assigns to `window.XLSX`. The global can be used in other scripts.
+
+### Internet Explorer and Older Browsers
+
+For broad compatibility with JavaScript engines, the library is written using
+ECMAScript 3 language dialect.  A "shim" script provides implementations of
+functions for older browsers and environments.
+
+Due to SSL compatibility issues, older versions of IE will not be able to use
+the CDN scripts directly. They should be downloaded and saved to a public path:
+
+<ul>
+<li>Standalone: <a href={"https://cdn.sheetjs.com/xlsx-" + current + "/package/dist/xlsx.mini.min.js"}>{"https://cdn.sheetjs.com/xlsx-" + current + "/package/dist/xlsx.mini.min.js"}</a></li>
+<li>Shim: <a href={"https://cdn.sheetjs.com/xlsx-" + current + "/package/dist/shim.min.js"}>{"https://cdn.sheetjs.com/xlsx-" + current + "/package/dist/shim.min.js"}</a></li>
+</ul>
+
+A `script` reference to the shim must be added before the standalone script:
+
+```html
+<!-- add the shim first -->
+<script type="text/javascript" src="shim.min.js"></script>
+<!-- after the shim is referenced, add the library -->
+<script type="text/javascript" src="xlsx.full.min.js"></script>
+```
+
+### Web Workers
+
+The standalone scripts can be loaded using `importScripts` at the top of the
+worker scripts:
+
+<CodeBlock language="js">{`\
+importScripts("https://cdn.sheetjs.com/xlsx-${current}/package/dist/shim.min.js");
+importScripts("https://cdn.sheetjs.com/xlsx-${current}/package/dist/xlsx.full.min.js");`}
+</CodeBlock>
+
+### Type Checker
+
+:::danger VSCode Telemetry and Data Exfiltration
+
+The official Microsoft builds of Visual Studio Code embed telemetry and send
+information to external servers.
+
+**[VSCodium](https://vscodium.com/) is a telemetry-free fork of VSCode.**
+
+When writing code that may process personally identifiable information (PII),
+the SheetJS team strongly encourages building VSCode from source or using IDEs
+that do not exfiltrate data.
+
+:::
+
+The type checker integrated in VSCodium and VSCode do not currently provide type
+hints when using the standalone build. Using the JSDoc `@type` directive coupled
+with type imports, VSCodium will recognize the types:
+
+![VSCodium types](pathname:///files/standalone-types.png)
+
+<ol start="1">
+<li><p>Download the types (<code parentName="pre">index.d.ts</code>) for
+   the desired version. The current version is available at <a href={"https://cdn.sheetjs.com/xlsx-" + current + "/package/types/index.d.ts"}>{"https://cdn.sheetjs.com/xlsx-" + current + "/package/types/index.d.ts"}</a></p></li>
+</ol>
+
+2) Rename the types file to `xlsx.d.ts`. It does not need to reside in the same
+folder as the standalone script.
+
+3) In the browser script referencing the global, prepend the following lines:
+
+```js title="Prepend this fragment in each source file referencing the XLSX global"
+/** @type {import("./xlsx")} */
+const XLSX = globalThis.XLSX;
+```
+
+4) If the `xlsx.d.ts` file is in a different folder, change the argument to the
+`import` method to reflect the relative path. For example, given the structure:
+
+```text title="Folder Structure"
+- /vendor
+  - /vendor/xlsx.ts
+- /src
+  - /src/app.js
+```
+
+`/src/app.js` must refer to the types as `../vendor/xlsx`:
+
+```js title="Preamble for /src/app.js when types are at /vendor/xlsx.d.ts"
+// highlight-next-line
+/** @type {import("../vendor/xlsx")} */
+const XLSX = globalThis.XLSX;
+```
+
+The `.d.ts` file extension must be omitted.
+
+:::warning pass
+
+JSDoc types using the `@import` directive are not supported in `<script>` tags.
+
+**This is a known bug with VSCode!**
+
+:::
+
+## ECMAScript Module Imports
+
+:::caution pass
+
+This section refers to imports in HTML pages using `<script type="module">`.
+
+The ["Frameworks and Bundlers"](/docs/getting-started/installation/frameworks)
+section covers imports in projects using bundlers (ViteJS) or frameworks
+(Kaioken / ReactJS / Angular / VueJS / Svelte)
+
+:::
+
+The ECMAScript Module build is saved to `xlsx.mjs` and can be directly added to
+a page with a `script` tag using `type="module"`:
+
+<CodeBlock language="html">{`\
+<script type="module">
+import { read, writeFileXLSX } from "https://cdn.sheetjs.com/xlsx-${current}/package/xlsx.mjs";
+</script>`}
+</CodeBlock>
+
+If Encoding support is required, `cpexcel.full.mjs` must be manually imported:
+
+<CodeBlock language="html">{`\
+<script type="module">
+/* load the codepage support library for extended support with older formats  */
+import { set_cptable } from "https://cdn.sheetjs.com/xlsx-${current}/package/xlsx.mjs";
+import * as cptable from 'https://cdn.sheetjs.com/xlsx-${current}/package/dist/cpexcel.full.mjs';
+set_cptable(cptable);
+</script>`}
+</CodeBlock>
+
+Web Worker support is noted in [the "Web Workers" demo](/docs/demos/bigdata/worker#installation)
+
+### Dynamic Imports
+
+Dynamic imports with `import()` will only download the SheetJS scripts when they
+are used. This example will download the library when data is exported:
+
+<CodeBlock language="html">{`\
+<button id="xport">Export</button>
+<script type="module">
+xport.addEventListener("click", async() => {
+\n\
+  /* dynamically import the script in the event listener */
+  // highlight-next-line
+  const XLSX = await import("https://cdn.sheetjs.com/xlsx-${current}/package/xlsx.mjs");
+\n\
+  const wb = XLSX.utils.book_new();
+  const ws = XLSX.utils.aoa_to_sheet([["a","b","c"],[1,2,3]]);
+  XLSX.utils.book_append_sheet(wb, ws, "Sheet1");
+  XLSX.writeFile(wb, "SheetJSESMTest.xlsx");
+});
+</script>`}
+</CodeBlock>
+
+:::caution pass
+
+The callback functions must be marked as `async` and the script block must have
+the attribute `type="module"`
+
+:::
+
+If Encoding support is required, `cpexcel.full.mjs` must be manually imported:
+
+<CodeBlock language="html">{`\
+<button id="xport">Export</button>
+<script type="module">
+xport.addEventListener("click", async() => {
+\n\
+  /* dynamically import the scripts in the event listener */
+  // highlight-start
+  const XLSX = await import("https://cdn.sheetjs.com/xlsx-${current}/package/xlsx.mjs");
+  const cptable = await import("https://cdn.sheetjs.com/xlsx-${current}/package/dist/cpexcel.full.mjs");
+  XLSX.set_cptable(cptable);
+  // highlight-end
+\n\
+  const wb = XLSX.utils.book_new();
+  const ws = XLSX.utils.aoa_to_sheet([["a","b","c"],[1,2,3]]);
+  XLSX.utils.book_append_sheet(wb, ws, "Sheet1");
+  XLSX.writeFile(wb, "SheetJSESMTest.xlsx");
+});
+</script>`}
+</CodeBlock>
+
+## Bower
+
+:::danger pass
+
+Bower is deprecated and the maintainers recommend using other tools.
+
+:::
+
+The Bower package manager supports tarballs from the SheetJS CDN:
+
+<CodeBlock language="bash">{`\
+npx bower install https://cdn.sheetjs.com/xlsx-${current}/xlsx-${current}.tgz`}
+</CodeBlock>
+
+Bower will place the standalone scripts in `bower_components/js-xlsx/dist/`

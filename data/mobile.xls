@@ -1,0 +1,154 @@
+<?xml version="1.0"?>
+<?mso-application progid="Excel.Sheet"?>
+<Workbook xmlns="urn:schemas-microsoft-com:office:spreadsheet" xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:x="urn:schemas-microsoft-com:office:excel" xmlns:ss="urn:schemas-microsoft-com:office:spreadsheet" xmlns:html="http://www.w3.org/TR/REC-html40">
+ <ExcelWorkbook xmlns="urn:schemas-microsoft-com:office:excel">
+  <WindowHeight>10620</WindowHeight>
+  <WindowWidth>11020</WindowWidth>
+  <WindowTopX>2260</WindowTopX>
+  <WindowTopY>19600</WindowTopY>
+  <ActiveSheet>1</ActiveSheet>
+  <ProtectStructure>False</ProtectStructure>
+  <ProtectWindows>False</ProtectWindows>
+ </ExcelWorkbook>
+ <Styles>
+  <Style ss:ID="Default" ss:Name="Normal">
+   <Alignment ss:Vertical="Bottom"/>
+   <Borders/>
+   <Font ss:FontName="Calibri" x:Family="Swiss" ss:Size="12" ss:Color="#000000"/>
+   <Interior/>
+   <NumberFormat/>
+   <Protection/>
+  </Style>
+  <Style ss:ID="s16">
+   <Font ss:FontName="Calibri" x:Family="Swiss" ss:Size="12" ss:Color="#1C1E21"/>
+  </Style>
+  <Style ss:ID="s17">
+   <Font ss:FontName="Calibri" x:Family="Swiss" ss:Size="12" ss:Color="#000000" ss:Bold="1"/>
+  </Style>
+  <Style ss:ID="s19">
+   <Alignment ss:Horizontal="Center" ss:Vertical="Bottom"/>
+   <Font ss:FontName="Calibri" x:Family="Swiss" ss:Size="12" ss:Color="#000000" ss:Bold="1"/>
+  </Style>
+  <Style ss:ID="s20">
+   <Font ss:FontName="Calibri" x:Family="Swiss" ss:Size="12" ss:Color="#467886" ss:Underline="Single"/>
+  </Style>
+ </Styles>
+ <Worksheet ss:Name="Frameworks">
+  <Table ss:ExpandedColumnCount="8" ss:ExpandedRowCount="17" x:FullColumns="1" x:FullRows="1" ss:DefaultColumnWidth="65" ss:DefaultRowHeight="16">
+   <Column ss:Index="3" ss:Width="24"/>
+   <Column ss:Width="31"/>
+   <Column ss:Width="24"/>
+   <Column ss:Width="31"/>
+   <Column ss:Width="24"/>
+   <Column ss:Width="31"/>
+   <Row>
+    <Cell ss:StyleID="s17"><Data ss:Type="String"></Data></Cell>
+    <Cell ss:MergeAcross="1" ss:StyleID="s19"><Data ss:Type="String">Real Device</Data></Cell>
+    <Cell ss:MergeAcross="1" ss:StyleID="s19"><Data ss:Type="String">MacOS Sim</Data></Cell>
+    <Cell ss:MergeAcross="1" ss:StyleID="s19"><Data ss:Type="String">Windows Sim</Data></Cell>
+    <Cell ss:MergeAcross="1" ss:StyleID="s19"><Data ss:Type="String">Linux Sim</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:StyleID="s17"><Data ss:Type="String">Platform</Data></Cell>
+    <Cell ss:StyleID="s17"><Data ss:Type="String">iOS</Data></Cell>
+    <Cell ss:StyleID="s17"><Data ss:Type="String">Android</Data></Cell>
+    <Cell ss:StyleID="s17"><Data ss:Type="String">iOS</Data></Cell>
+    <Cell ss:StyleID="s17"><Data ss:Type="String">Android</Data></Cell>
+    <Cell ss:StyleID="s17"><Data ss:Type="String">iOS</Data></Cell>
+    <Cell ss:StyleID="s17"><Data ss:Type="String">Android</Data></Cell>
+    <Cell ss:StyleID="s17"><Data ss:Type="String">iOS</Data></Cell>
+    <Cell ss:StyleID="s17"><Data ss:Type="String">Android</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:StyleID="s20" ss:HRef="/docs/demos/mobile/reactnative"><Data ss:Type="String">React Native</Data></Cell>
+    <Cell ss:StyleID="s16"><Data ss:Type="String">✔</Data></Cell>
+    <Cell ss:StyleID="s16"><Data ss:Type="String">✔</Data></Cell>
+    <Cell ss:StyleID="s16"><Data ss:Type="String">✔</Data></Cell>
+    <Cell ss:StyleID="s16"><Data ss:Type="String">✔</Data></Cell>
+    <Cell ss:StyleID="s16"><Data ss:Type="String">✘</Data></Cell>
+    <Cell ss:StyleID="s16"><Data ss:Type="String">✔</Data></Cell>
+    <Cell ss:StyleID="s16"><Data ss:Type="String">✘</Data></Cell>
+    <Cell ss:StyleID="s16"><Data ss:Type="String">✔</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:StyleID="s20" ss:HRef="/docs/demos/mobile/nativescript"><Data ss:Type="String">NativeScript</Data></Cell>
+    <Cell ss:StyleID="s16"><Data ss:Type="String">✔</Data></Cell>
+    <Cell ss:StyleID="s16"><Data ss:Type="String">✔</Data></Cell>
+    <Cell ss:StyleID="s16"><Data ss:Type="String">✔</Data></Cell>
+    <Cell ss:StyleID="s16"><Data ss:Type="String">✔</Data></Cell>
+    <Cell ss:StyleID="s16"><Data ss:Type="String">✘</Data></Cell>
+    <Cell ss:StyleID="s16"><Data ss:Type="String">✔</Data></Cell>
+    <Cell ss:StyleID="s16"><Data ss:Type="String">✘</Data></Cell>
+    <Cell ss:StyleID="s16"><Data ss:Type="String"> </Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:StyleID="s20" ss:HRef="/docs/demos/mobile/capacitor"><Data ss:Type="String">CapacitorJS</Data></Cell>
+    <Cell ss:StyleID="s16"><Data ss:Type="String">✔</Data></Cell>
+    <Cell ss:StyleID="s16"><Data ss:Type="String">✔</Data></Cell>
+    <Cell ss:StyleID="s16"><Data ss:Type="String">✔</Data></Cell>
+    <Cell ss:StyleID="s16"><Data ss:Type="String">✔</Data></Cell>
+    <Cell ss:StyleID="s16"><Data ss:Type="String">✘</Data></Cell>
+    <Cell ss:StyleID="s16"><Data ss:Type="String">✔</Data></Cell>
+    <Cell ss:StyleID="s16"><Data ss:Type="String">✘</Data></Cell>
+    <Cell ss:StyleID="s16"><Data ss:Type="String"> </Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:StyleID="s20" ss:HRef="/docs/demos/mobile/ionic"><Data ss:Type="String">Ionic</Data></Cell>
+    <Cell ss:StyleID="s16"><Data ss:Type="String">✔</Data></Cell>
+    <Cell ss:StyleID="s16"><Data ss:Type="String">✔</Data></Cell>
+    <Cell ss:StyleID="s16"><Data ss:Type="String">✔</Data></Cell>
+    <Cell ss:StyleID="s16"><Data ss:Type="String">✔</Data></Cell>
+    <Cell ss:StyleID="s16"><Data ss:Type="String">✘</Data></Cell>
+    <Cell ss:StyleID="s16"><Data ss:Type="String"> </Data></Cell>
+    <Cell ss:StyleID="s16"><Data ss:Type="String">✘</Data></Cell>
+    <Cell ss:StyleID="s16"><Data ss:Type="String"> </Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:StyleID="s20" ss:HRef="/docs/demos/mobile/flutter"><Data ss:Type="String">Dart + Flutter</Data></Cell>
+    <Cell ss:StyleID="s16"><Data ss:Type="String">✔</Data></Cell>
+    <Cell ss:StyleID="s16"><Data ss:Type="String">✔</Data></Cell>
+    <Cell ss:StyleID="s16"><Data ss:Type="String">✔</Data></Cell>
+    <Cell ss:StyleID="s16"><Data ss:Type="String">✔</Data></Cell>
+    <Cell ss:StyleID="s16"><Data ss:Type="String">✘</Data></Cell>
+    <Cell ss:StyleID="s16"><Data ss:Type="String">✔</Data></Cell>
+    <Cell ss:StyleID="s16"><Data ss:Type="String">✘</Data></Cell>
+    <Cell ss:StyleID="s16"><Data ss:Type="String"> </Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:StyleID="s20" ss:HRef="/docs/demos/mobile/quasar"><Data ss:Type="String">Quasar</Data></Cell>
+    <Cell ss:StyleID="s16"><Data ss:Type="String">✔</Data></Cell>
+    <Cell ss:StyleID="s16"><Data ss:Type="String">✔</Data></Cell>
+    <Cell ss:StyleID="s16"><Data ss:Type="String">✔</Data></Cell>
+    <Cell ss:StyleID="s16"><Data ss:Type="String">✔</Data></Cell>
+    <Cell ss:StyleID="s16"><Data ss:Type="String">✘</Data></Cell>
+    <Cell ss:StyleID="s16"><Data ss:Type="String"> </Data></Cell>
+    <Cell ss:StyleID="s16"><Data ss:Type="String">✘</Data></Cell>
+    <Cell ss:StyleID="s16"><Data ss:Type="String"> </Data></Cell>
+   </Row>
+  </Table>
+  <WorksheetOptions xmlns="urn:schemas-microsoft-com:office:excel">
+   <PageSetup>
+    <Header x:Margin="0.3"/>
+    <Footer x:Margin="0.3"/>
+    <PageMargins x:Bottom="0.75" x:Left="0.7" x:Right="0.7" x:Top="0.75"/>
+   </PageSetup>
+   <FreezePanes/>
+   <FrozenNoSplit/>
+   <SplitHorizontal>2</SplitHorizontal>
+   <TopRowBottomPane>2</TopRowBottomPane>
+   <ActivePane>2</ActivePane>
+   <Panes>
+    <Pane>
+     <Number>3</Number>
+    </Pane>
+    <Pane>
+     <Number>2</Number>
+     <ActiveRow>12</ActiveRow>
+     <ActiveCol>5</ActiveCol>
+    </Pane>
+   </Panes>
+   <ProtectObjects>False</ProtectObjects>
+   <ProtectScenarios>False</ProtectScenarios>
+  </WorksheetOptions>
+ </Worksheet>
+</Workbook>
