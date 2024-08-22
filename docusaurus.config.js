@@ -94,9 +94,9 @@ const config = {
             label: 'Tutorial',
           },
           {to: '/blog', label: 'Blog', position: 'left'},
-          {to: '/docs/go-ethereum/Go%20Ethereum', label: 'Ethereum', position: 'right'},
+          {to: '/docs/Google%20Sheet%20formulas/Google%20Sheets%20Formulas%20Tips', label: 'Formulas', position: 'right'},
           {to: '/docs/sheetjs/cheat', label: 'GoogleSheets', position: 'right'},
-          {to: '/docs/solidity', label: 'solidity', position: 'right'},
+          {to: '/docs/Google%20Sheets/Google%20Sheets%20function%20list', label: 'functionlist', position: 'right'},
           { href: 'https://www.543x.com', label: 'Help', position: 'right' },
           {
             href: 'https://github.com/teabagging/GoogleSheets',
