@@ -95,7 +95,7 @@ const config = {
           },
           {to: '/blog', label: 'Blog', position: 'left'},
           {to: '/docs/go-ethereum/Go%20Ethereum', label: 'Ethereum', position: 'right'},
-          {to: '/docs/miscellany', label: 'GoogleSheets', position: 'right'},
+          {to: '/docs/sheetjs/cheat', label: 'GoogleSheets', position: 'right'},
           {to: '/docs/solidity', label: 'solidity', position: 'right'},
           { href: 'https://www.543x.com', label: 'Help', position: 'right' },
           {
